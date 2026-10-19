@@ -31,16 +31,22 @@ public abstract class Modelo {
      * Registra el loss de una época. Si el buffer se llena,
      * actualiza el mejor loss pero no agrega más elementos.
      */
+    // TODO: implementar
     public void registrarEpoca(int loss) {
-        // TODO: implementar
+        if(epocaActual < lossPorEpoca.length){
+            lossPorEpoca[epocaActual] = loss;
+            epocaActual++;
+        }
     }
-
     /**
      * Retorna el mejor (menor) loss registrado.
      * Si no hay épocas, retorna Integer.MAX_VALUE.
      */
-    public int mejorLoss() {
+    public int mejorLoss(int loss) {
         // TODO: implementar
+        if (loss < mejorLossRegistrado){
+            mejorLossRegistrado = loss;
+        }
         return Integer.MAX_VALUE;
     }
 
@@ -50,7 +56,7 @@ public abstract class Modelo {
      */
     public double calcularMetrica(MetricaEvaluacion metrica) {
         // TODO: implementar
-        return 0;
+        return metrica.calcular(this, "accuracy");
     }
 
     // Getters encapsulados
