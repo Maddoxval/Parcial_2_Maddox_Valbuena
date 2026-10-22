@@ -9,13 +9,16 @@ import modelos.Modelo;
 public class MetricaEvaluacion {
 
     /**
-     * TODO estudiante:
      * Devuelve una métrica derivada del mejor loss del modelo.
-     * Fórmula sugerida: 100.0 / (1 + modelo.mejorLoss())
+     * Fórmula: 100.0 / (1 + modelo.mejorLoss())
      * Si mejorLoss() == Integer.MAX_VALUE (sin épocas), retorna 0.
      */
     public double calcular(Modelo modelo, String nombreMetrica) {
-        // TODO: implementar
-        return 0;
+        int mejor = modelo.mejorLoss();
+
+        if (mejor == Integer.MAX_VALUE) {
+            return 0;   // sin épocas registradas
+        }
+        return 100.0 / (1 + mejor);
     }
 }
